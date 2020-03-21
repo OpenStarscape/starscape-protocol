@@ -12,6 +12,6 @@ The [core Changeable Properties Protocol](chprops.md) is supplemented by "sessio
 
 ## OpenStarscape core
 
-**This component of the protocol suite has not yet reached its first draft.**
+**This component of the protocol suite has not been finalized.**
 
 The [OpenStarscape core](oscore.md) is a specialization of the Changeable Properties Protocol that provides a number of objects and commands to represent sensor data and vessel control functionality for a spacecraft in a 3D environment.
