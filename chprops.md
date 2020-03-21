@@ -34,6 +34,8 @@ Set a property's value.
 * `property`: String; the property to set.
 * `value`: Any; the value to set it to.
 
+The server may refuse to allow setting the property.
+
 ### `get`
 
 Get the current value of a property, but only once.
@@ -48,8 +50,11 @@ The status message must include, if successful, a field `value` with the propert
 
 Subscribe to receive updates on the value of certain properties until unsubscribed.
 
+* `id`: Number; unique identifier for the message, for use in the server's `status` response. Value may be reused once `status` is received.
 * `object`: Number; identifier of the object with the property.
 * `properties`: String list; the properties to subscribe to.
+
+The server may refuse to allow subscribing the property.
 
 ### `unsubscribe`
 
@@ -73,12 +78,12 @@ Additional properties may be specified by the specialization.
 
 ### `status`
 
-Report status and results of a previous message from the client.
+Report status and results of a previous message with an `id` field sent by the client.
 
 * `id`: Number; `id` value from the original message.
 * `status`: String; indication of status. `"success"` if successful, otherwise an error reason, lowercase, with spaces and no punctuation.
 
-May include additional fields as specified by the client message.
+May include additional fields as given by the specification for the client message. May be sent with an indefinite delay after the client's message. Standard error statuses are `"malformed"`, `"no such object"`, `"no such property"`, and `"not allowed"`.
 
 ### `update`
 
@@ -92,9 +97,9 @@ Give an update on a subscribed property.
 
 All objects have these properties:
 
-* `type`: String; the kind of object.
-* `version`: String; the version number of the object's schema.
-* `properties`: String list; the properties of the object.
+* `type`: String; the kind of object. Not settable. Not subscribable.
+* `version`: String; the version number of the object's schema. Not settable. Not subscribable.
+* `properties`: String list; the properties of the object. Not settable.
 
 The specialization must define a minimum set of properties for each version of each type, and must not use different names for conceptually identical properties or the same names for conceptually different properties.
 
@@ -102,8 +107,8 @@ The specialization must define a minimum set of properties for each version of e
 
 The "universe" is an object that contains global properties about the whole system. Its identifier is always 0, and its type is always `universe`. Its version is 1 if as specified here, or greater than 10 if modified by the specialization.
 
-* `objects`: Number list; the objects that are available.
-* `time`: Number; a monotonously-increasing timestamp.
+* `objects`: Number list; the objects that are available. Not settable.
+* `time`: Number; a monotonously-increasing timestamp. Not settable.
 
 ## History
 
@@ -111,3 +116,4 @@ The following is the history of this document as recommended by the GNU Free Doc
 
 * Initially written as "Changing properties protocol" by Athena Martin on March 20 2020. Not published.
 * Generally revised and placed under the GNU Free Documentation License as "Changeable Properties Protocol" by Athena Martin on March 21 2020. Published [via GitHub](https://github.com/OpenStarscape/Protocol) by the OpenStarscape team.
+* Revised to improve error reporting as "Changeable Properties Protocol" by Athena Martin on March 21 2020. Published [via GitHub](https://github.com/OpenStarscape/Protocol) by the OpenStarscape team.
