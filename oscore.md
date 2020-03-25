@@ -78,3 +78,9 @@ An object in space under power. Version 1.
 * `accel`: Object containing numbers; the `x`, `y`, and `z` components of the body's acceleration vector in megameters per second per second. May or may not be settable.
 * `quatdeltarotate`: Object containing numbers; the `n`, `i`, `j`, and `k` components of a rotation quaternion describing the body's delta-orientation change per second per second. Not settable.
 * `axangdeltarotate`: Object containing numbers; the `eliv` and `azim` angles of a unit vector and the `roll` angle of the angle-axis representation, all measured in radians per second per second, describing the body's delta-orientation change. Not settable.
+
+## History
+
+The following is the history of this document as recommended by the GNU Free Documentation License:
+
+* Initially drafted as "OpenStarscape core" by Alexander Logan Martin on March 21 2020. Published [via GitHub](https://github.com/OpenStarscape/Protocol) by the OpenStarscape team.
