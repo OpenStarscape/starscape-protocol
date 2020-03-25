@@ -29,7 +29,7 @@ The following are legal messages that the client may send to the server. The spe
 
 Set a property's value.
 
-* `id`: Number; unique identifier for the message, for use in the server's `status` response. Value may be reused once `status` is received.
+* `token`: Number; unique identifier for the message, for use in the server's `result` response. May be `null` for no reply. Value may be reused once `result` is received.
 * `object`: Number; identifier of the object with the property.
 * `property`: String; the property to set.
 * `value`: Any; the value to set it to.
@@ -40,17 +40,17 @@ The server may refuse to allow setting the property.
 
 Get the current value of a property, but only once.
 
-* `id`: Number; unique identifier for the message, for use in the server's `status` response. Value may be reused once `status` is received.
+* `token`: Number; unique identifier for the message, for use in the server's `result` response. May be `null` for no reply. Value may be reused once `result` is received.
 * `object`: Number; identifier of the object with the property.
 * `property`: String; the property to get.
 
-The status message must include, if successful, a field `value` with the property's value.
+The `result` message must include, if successful, a field `value` with the property's value.
 
 ### `subscribe`
 
 Subscribe to receive updates on the value of certain properties until unsubscribed.
 
-* `id`: Number; unique identifier for the message, for use in the server's `status` response. Value may be reused once `status` is received.
+* `token`: Number; unique identifier for the message, for use in the server's `result` response. May be `null` for no reply. Value may be reused once `result` is received.
 * `object`: Number; identifier of the object with the property.
 * `properties`: String list; the properties to subscribe to.
 
@@ -76,11 +76,11 @@ Identify the server and specialization details.
 
 Additional properties may be specified by the specialization.
 
-### `status`
+### `result`
 
-Report status and results of a previous message with an `id` field sent by the client.
+Report status and results of a previous message with a non-`null` `token` field sent by the client.
 
-* `id`: Number; `id` value from the original message.
+* `token`: Number; `id` value from the original message.
 * `status`: String; indication of status. `"success"` if successful, otherwise an error reason, lowercase, with spaces and no punctuation.
 
 May include additional fields as given by the specification for the client message. May be sent with an indefinite delay after the client's message. Standard error statuses are `"malformed"`, `"no such object"`, `"no such property"`, and `"not allowed"`.
@@ -117,3 +117,4 @@ The following is the history of this document as recommended by the GNU Free Doc
 * Initially written as "Changing properties protocol" by Alexander Logan Martin on March 20 2020. Not published.
 * Generally revised and placed under the GNU Free Documentation License as "Changeable Properties Protocol" by Alexander Logan Martin on March 21 2020. Published [via GitHub](https://github.com/OpenStarscape/Protocol) by the OpenStarscape team.
 * Revised to improve error reporting as "Changeable Properties Protocol" by Alexander Logan Martin on March 21 2020. Published [via GitHub](https://github.com/OpenStarscape/Protocol) by the OpenStarscape team.
+* Revised to improve terminology and allow reply elision as "Changeable Properties Protocol by Alexander Logan Martin on March 24 2020. Published [via GitHub](https://github.com/OpenStarscape/Protocol) by the OpenStarscape team.
