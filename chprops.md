@@ -113,12 +113,3 @@ The "universe" is an object that contains global properties about the whole syst
 
 * `objects`: Number list; the objects that are available. Not settable.
 * `time`: Number; a monotonously-increasing timestamp. Not settable.
-
-## History
-
-The following is the history of this document as recommended by the GNU Free Documentation License:
-
-* Initially written as "Changing properties protocol" by Alexander Logan Martin on March 20 2020. Not published.
-* Generally revised and placed under the GNU Free Documentation License as "Changeable Properties Protocol" by Alexander Logan Martin on March 21 2020. Published [via GitHub](https://github.com/OpenStarscape/protocol) by the OpenStarscape team.
-* Revised to improve error reporting as "Changeable Properties Protocol" by Alexander Logan Martin on March 21 2020. Published [via GitHub](https://github.com/OpenStarscape/protocol) by the OpenStarscape team.
-* Revised to improve terminology and allow reply elision as "Changeable Properties Protocol by Alexander Logan Martin on March 24 2020. Published [via GitHub](https://github.com/OpenStarscape/protocol) by the OpenStarscape team.

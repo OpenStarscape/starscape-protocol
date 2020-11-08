@@ -26,10 +26,3 @@ Unix-domain `SOCK_STREAM` sockets are an inter-process communication mechanism i
 This specification provides a session layer that sits between any of the above-described stream transports and the Changeable Properties Protocol.
 
 All messages must be converted to datagrams by serializing them with no newlines. Every datagram is terminated by exactly one newline and sent to the stream. This entire process is reversed on the receiving end.
-
-## History
-
-The following is the history of this document as recommended by the GNU Free Documentation License:
-
-* Initially written as "Session layer for changing properties protocol over stream protocols" by Alexander Logan Martin on March 20 2020. Not published.
-* Generally revised and placed under the GNU Free Documentation License as "Session layer for Changeable Properties Protocol over stream transports" by Alexander Logan Martin on March 21 2020. Published [via GitHub](https://github.com/OpenStarscape/protocol) by the OpenStarscape team.

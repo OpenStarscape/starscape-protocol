@@ -24,10 +24,3 @@ Unix-domain `SOCK_SEQPACKET` sockets are a sequenced, reliable, bidirectional, c
 ## Specification
 
 All of the above-described sequenced packet transports can be used with no further specification to support the Changeable Properties Protocol.
-
-## History
-
-The following is the history of this document as recommended by the GNU Free Documentation License:
-
-* Initially written as "Session layer for changing properties protocol over sequenced packets protocols" by Alexander Logan Martin on March 20 2020. Not published.
-* Generally revised and placed under the GNU Free Documentation License as "Session layer for Changeable Properties Protocol over sequenced packet transports" by Alexander Logan Martin on March 21 2020. Published [via GitHub](https://github.com/OpenStarscape/protocol) by the OpenStarscape team.
