@@ -1,6 +1,6 @@
 # Session layer for Changeable Properties Protocol over sequenced packet transports
 
-Written by Alexander Logan Martin and published by the OpenStarscape team [via GitHub](https://github.com/OpenStarscape/Protocol).
+Written by Alexander Logan Martin and published by the OpenStarscape team [via GitHub](https://github.com/OpenStarscape/protocol).
 
 Copyright (C) 2020 Alexander Logan Martin.
 Permission is granted to copy, distribute, and/or modify this document under the terms of the GNU Free Documentation License, Version 1.3 or any later version published by the Free Software Foundation; with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts. A copy of the license is included in the collection containing this document.
@@ -26,4 +26,4 @@ All of the above-described sequenced packet transports can be used with no furth
 The following is the history of this document as recommended by the GNU Free Documentation License:
 
 * Initially written as "Session layer for changing properties protocol over sequenced packets protocols" by Alexander Logan Martin on March 20 2020. Not published.
-* Generally revised and placed under the GNU Free Documentation License as "Session layer for Changeable Properties Protocol over sequenced packet transports" by Alexander Logan Martin on March 21 2020. Published [via GitHub](https://github.com/OpenStarscape/Protocol) by the OpenStarscape team.
+* Generally revised and placed under the GNU Free Documentation License as "Session layer for Changeable Properties Protocol over sequenced packet transports" by Alexander Logan Martin on March 21 2020. Published [via GitHub](https://github.com/OpenStarscape/protocol) by the OpenStarscape team.
