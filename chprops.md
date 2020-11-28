@@ -17,6 +17,29 @@ If the disclaimer of warranty provided above cannot be given local legal effect 
 
 The Changeable Properties Protocol is an application-layer protocol to handle systems that consist of numerous objects that have properties that change in real time. Different systems may be handled with the protocol, using different "specializations."
 
+## Revisions
+
+Each protocol revision has a unique name. A server advertises the single revision it supports on connection. We will use `starscape-v0` before the initial protocol is standardized, and then bump to `starscape-v1`. `starscape-v*` names are reserved for the core project. Forks with incompatible protocols should use different names.
+
+## Versions
+
+A server also advertises a single numerical version on connection. New revions may add classes and attributes but may not remove or modify existing ones. Clients built for an older version of the same revision should work with a newer one.
+
+## Primitive types
+
+Properties and method/signal arguments can be of the following types. The type(s) valid in a specific context are described with the class in question:
+
+- `null`: a single-value type, often a value can be some other type or null
+- `bool`: `true` or `false`
+- `int`: a 64-bit integer
+- `float`: a 64-bit floating point value
+- `object`: a reference to a server-side object that can be represented by a 64-bit integer
+- `vector3`: a vector with 3 64-bit float components (__not__ to be confused with list)
+- `list`: a sequence of 0 or more values
+- `map`: a mapping of 0 or more keys to values
+
+These types overlap with what's available in data interchange formats like JSON but are not covered completely. Please see the format-specific documents for how they are unambiguously encoded.
+
 ## General behavior
 
 The protocol uses a session layer that provides reliable, in-order, two-way, connection-oriented delivery of JSON messages.
