@@ -13,7 +13,7 @@ A bundle encoded in JSON looks like this:
 ```jsonc
 {
 	"seq": 82, // Sequence number goes up by one for each reliable bundle. Null for unreliable bundles.
-	"time": 1, // Time is in seconds (may be fractional). Null for client's bundles.
+	"time": 1.528, // Time is in seconds. Omitted for client bundles.
 	"messages": [
 		{
 			"mtype": "ack", // An acknowledgement.
