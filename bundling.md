@@ -10,10 +10,10 @@ All bundles have a timestamp in game ticks.
 
 A bundle encoded in JSON looks like this:
 
-```json
+```jsonc
 {
 	"seq": 82, // Sequence number goes up by one for each reliable bundle. Null for unreliable bundles.
-	"time": 1, // Time goes up by one for each game tick. Null for client's bundles.
+	"time": 1, // Time is in seconds (may be fractional). Null for client's bundles.
 	"messages": [
 		{
 			"mtype": "ack", // An acknowledgement.
