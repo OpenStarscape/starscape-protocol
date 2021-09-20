@@ -1,5 +1,5 @@
 # Orbit Parameters
-Orbits are complicated. Its possible to implement a Starscape client without using them, but there are a number of issues that crop up. Since orbiting objects are constantly changing direction, a client that relies on position/velocity needs constant updates from the server. It's impractical to transmit the location of everything 30 or 60 times per second, so framerates suffer. By transmitting orbits, much less frequent updates are needed for many bodies, and they can be animated in real time.
+Orbits are complicated. It's possible to implement a Starscape client without using orbits, but it leads to poor performance. Since orbiting objects are constantly changing direction, a client that relies on position/velocity needs constant updates from the server. It's impractical to transmit the location of all bodies 30 or 60 times per second, so the framerate suffers. By transmitting orbits, much less frequent updates are needed for many bodies, and they can be animated in real time.
 
 ## References
 - [orbitalmechanics.info](https://orbitalmechanics.info/) is an interactive visualiser that mostly matches the Starscape orbit parameters, very useful to help wrap your head around things.
@@ -12,7 +12,7 @@ Orbits are complicated. Its possible to implement a Starscape client without usi
 - __Eccentric Anomaly__: what the angle of the body would if if the orbit were squished to a circle. Also useful in calculations.
 
 ## Orbit Property
-The `orbit` property of a Body is either `null` or `array` of 7 elements (six `scalars` and the gravity parent). Only elliptical/circular orbits can be represented.
+The `orbit` property of a Body is either `null` or an `array` of 7 elements (six `scalars` and the gravity parent). Only elliptical/circular orbits can be represented.
 - `semi_major_axis`: length (km) of the semi-major axis (long radius). Commonly `a`.
 - `semi_minor_axis`: length (km) of the semi-minor axis (short radius). Commonly `b`.
 - `inclination_angle`: tilt (radians) of the orbital plane above the global X/Y plane. Ranges from 0 to π. Commonly `i`.
@@ -24,12 +24,12 @@ The `orbit` property of a Body is either `null` or `array` of 7 elements (six `s
 
 If the body does not have a gravity parent or is not in an elliptical orbit around it's gravity parent, the orbit property is `null`.
 
-# TODO
+## TODO
 - Add pseudocode example of calculating position and velocity of a body from an orbit.
 - Add Python reference implementation that passes the test cases.
 
 ## Tests
-Because orbits are hard to implement right, we provide a collection of test cases which can be used for both client and server implementations. See [orbit tests](orbit-tests) for details.
+We provide a collection of test cases which can be used for both client and server implementations. See [orbit tests](orbit-tests).
 
 ---
 
