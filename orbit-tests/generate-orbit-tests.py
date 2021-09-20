@@ -24,7 +24,7 @@ semi_minor = 'semi_minor'
 inclination = 'inclination'
 ascending_node = 'ascending_node'
 periapsis = 'periapsis'
-start_time = 'start_time'
+base_time = 'base_time'
 period_time = 'period_time'
 at_time = 'at_time'
 completed = 'completed'
@@ -49,7 +49,7 @@ default = {
     # 0 means it's on the ascending node, + goes in the direction of the body
     periapsis: 0,
     # Time at which the body is at the ascending node
-    start_time: 0,
+    base_time: 0,
     # How much of the orbit has been completed (1 means the body is back at the start)
     completed: 0,
     # The bodies position
@@ -135,13 +135,29 @@ tests = [
         name: 'start of flat eliptical with start time',
         semi_major: 5,
         semi_minor: 3,
-        start_time: 1,
+        base_time: 1,
         position: [1, 0, 0],
         direction: [0, 1, 0],
     }, {
         name: 'half past flat eliptical',
         semi_major: 5,
         semi_minor: 3,
+        completed: 0.5,
+        position: [-9, 0, 0],
+        direction: [0, -1, 0],
+    }, {
+        name: 'half past flat eliptical with negative base time',
+        semi_major: 5,
+        semi_minor: 3,
+        base_time: -1000,
+        completed: 0.5,
+        position: [-9, 0, 0],
+        direction: [0, -1, 0],
+    }, {
+        name: 'half past flat eliptical with base time after current time',
+        semi_major: 5,
+        semi_minor: 3,
+        base_time: 1000,
         completed: 0.5,
         position: [-9, 0, 0],
         direction: [0, -1, 0],
@@ -236,7 +252,23 @@ tests = [
         completed: 0.25,
         position: [-2.4042535605508095, -5.655452960011202, -4.10892709058194],
         direction: [0.291268307285801, -0.5262369119099976, -0.382333496308824],
-    }
+    }, {
+        name: 'quarter past flat eliptical with negative base time',
+        semi_major: 5,
+        semi_minor: 3,
+        base_time: -1000,
+        completed: 0.25,
+        position: [-6.990524302126245, 2.404253560550809, 0],
+        direction: [-0.24241384204161087, -0.10854928913039147, 0],
+    }, {
+        name: 'quarter past flat eliptical with base time after current time',
+        semi_major: 5,
+        semi_minor: 3,
+        base_time: 1000,
+        completed: 0.25,
+        position: [-6.990524302126245, 2.404253560550809, 0],
+        direction: [-0.24241384204161087, -0.10854928913039147, 0],
+    },
 ]
 
 # Find output path
@@ -307,18 +339,17 @@ output = []
 for test in tests:
     # Kepler's Third Law
     test_period_time = tau * sqrt(test[semi_major]**3 / test[grav_param])
-    test_at_time = test[completed] * test_period_time + test[start_time]
+    test_at_time = test[completed] * test_period_time + (test[base_time] % test_period_time)
     output.append({
         name: test[name],
-        'paramaters': [
+        'orbit': [
             test[semi_major],
             test[semi_minor],
             test[inclination],
             test[ascending_node],
             test[periapsis],
-            test[start_time],
+            test[base_time],
             test_period_time,
-            1, # parent
         ],
         grav_param: test[grav_param],
         at_time: test_at_time,
@@ -328,6 +359,12 @@ for test in tests:
 
 if error:
     exit(1)
+
+# Dicts are apparently ordered in python, and this weird syntax puts the "comment" at the top of the 1st test. Don't ask questions.
+output[0] = {
+    'comment': 'see https://github.com/OpenStarscape/starscape-protocol/tree/master/orbit-tests for documentation',
+    **output[0]
+}
 
 # Write output files
 print('writing ' + str(len(output)) + ' tests to ' + output_path)
