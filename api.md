@@ -47,6 +47,20 @@ Derives from: __none__
 Properties:
 - `class` (RO `string`): the type of body (can be `"celestial"` or `"ship"`).
 - `grav_parent` (RO `object<Body> | null`): simply, can be thought of as the body, if any, this body is orbiting around. See (Gravity Parents)[#gravity-parents] for details.
+- `orbit` (RO
+    ```
+    [
+      semi_major_axis:      scalar,
+      semi_minor_axis:      scalar,
+      inclination_angle:    scalar,
+      ascending_node_angle: scalar,
+      periapsis_angle:      scalar,
+      base_time:            scalar,
+      period_time:          scalar,
+      grav_parent:          object<Body>
+    ] | null
+    ```
+    ): see [orbit.md](orbit.md).
 - `position` (RW `vector3`): where the body currently is in 3D space (km).
 - `velocity` (RW `vector3`): how fast and in what direction the body is moving (km/s).
 - `mass` (RW `scalar`): mass of the body (t).
