@@ -76,6 +76,11 @@ tests = [
         position: [-1, 0, 0],
         direction: [0, -1, 0],
     }, {
+        name: 'three quarters past default orbit',
+        completed: 0.75,
+        position: [0, -1, 0],
+        direction: [1, 0, 0],
+    }, {
         name: 'full rotation default orbit',
         completed: 1,
     }, {
