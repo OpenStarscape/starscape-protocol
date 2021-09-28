@@ -19,7 +19,7 @@ The gravitational constant is 6.67430×10^-17 (the real gravitational constant r
 ### Gravity Parents
 To aid with orbits, autopilot, and other things, Starscape has the concept of "gravity parents". Most simply, a body's gravity parent can be thought of as the body it is orbiting around. Not all bodies have gravity parents at all times. A body has at most 1 gravity parent at a given time. Parents and parent's parents form a tree. In our solar system, Luna's parent is Earth and earth's parent is Sol. Sol has no parent.
 
-The details of how parents are calculated is a little more complex. The child is always less massive than it's parent (this guarantees there will never be a circular relationship). The parent is the _least_ massive body for which the child is within the approximate [sphere of influence](https://en.wikipedia.org/wiki/Sphere_of_influence_(astrodynamics)). Sphere of influence is calculated as `rSOI = a(m/M)^(2/5)` (where a is the semi-major axis, m is the mass of the smaller body and M is the mass of the larger body).
+The details of how parents are calculated is a little more complex. The child is always less massive than it's parent (this guarantees there will never be a circular relationship). The parent is the _least_ massive body for which the child is within the approximate [sphere of influence](https://en.wikipedia.org/wiki/Sphere_of_influence_(astrodynamics)). Sphere of influence is calculated as `rSOI = a(m/M)^(2/5)` (where `rSOI` is the radius of the sphere of influence, `a` is the semi-major axis, `m` is the mass of the smaller body and `M` is the mass of the larger body).
 
 ## Objects
 ### Root
@@ -47,6 +47,20 @@ Derives from: __none__
 Properties:
 - `class` (RO `string`): the type of body (can be `"celestial"` or `"ship"`).
 - `grav_parent` (RO `object<Body> | null`): simply, can be thought of as the body, if any, this body is orbiting around. See (Gravity Parents)[#gravity-parents] for details.
+- `orbit` (RO
+    ```
+    [
+      semi_major_axis:      scalar,
+      semi_minor_axis:      scalar,
+      inclination_angle:    scalar,
+      ascending_node_angle: scalar,
+      periapsis_angle:      scalar,
+      base_time:            scalar,
+      period_time:          scalar,
+      grav_parent:          object<Body>
+    ] | null
+    ```
+    ): see [orbit.md](orbit.md).
 - `position` (RW `vector3`): where the body currently is in 3D space (km).
 - `velocity` (RW `vector3`): how fast and in what direction the body is moving (km/s).
 - `mass` (RW `scalar`): mass of the body (t).
