@@ -35,6 +35,7 @@ Properties:
 
 Signals:
 - `ship_created` (`object<Ship>`): notification that a new ship has been created (by this client or some other client).
+- `error` (`string`): a recoverable error occurred, generally due to the client making an invalid request.
 
 Actions:
 - `create_ship` (`[position: vector3, velocity: vector3]`): create a new ship at the given position and with the given velocity
