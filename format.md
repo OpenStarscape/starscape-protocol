@@ -61,6 +61,7 @@ Many of the primitive types can be represented cleanly in JSON, but some need a 
 - `object`: array-wrapped number (`[42]`)
 - `vector3`: array of three numbers (`[1, -2, 3.5]`)
 - `array`: array-wrapped array of values (`[[1.5, [42], "foo"]]`)
+- `map`: JSON object containing strings mapped to values
 
 ## JSON Format (legacy)
 This is the format currently used by the client and the server

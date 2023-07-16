@@ -14,6 +14,7 @@ The primitive data types used in the API are:
 - `object`: a reference to a server-side object. Represented by a non-zero 64-bit integer.
 - `vector3`: a vector with 3 64-bit float components (not to be confused with array).
 - `array`: a sequence of 0 or more values of any type. Can contain values of different types.
+- `map`: a mapping of strings to values, like a dict in Python or object in JavaScript
 
 Formats must unambiguously represent values of any type (an int and an object __must__ be distinguishable without context) with the exception is scalars and integers. whole-number scalars are allowed to be ambiguous with integers.
 
