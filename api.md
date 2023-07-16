@@ -29,16 +29,22 @@ Derives from: __none__
 
 Properties:
 - `time` (RO `scalar`): the current in-game time, in seconds.
+- `physics_ticks_per_network_tick` (RW `integer`): number of physics ticks to perform for each roundtrip with clients.
+- `physics_tick_delta` (RW `scalar`): in-game time in seconds to simulate physics for each physics tick.
+- `min_roundtrip_time` (RW `scalar`): minimum real-world time in seconds to idle during each network tick. Clients can respond to messages in a single tick if their ping is faster than this.
+- `pause_at` (RW `scalar | null`): the in-game time at which to pause the game. When this time is reached the `paused` signal is fired, `physics_ticks_per_network_tic` is set to `0` and `pause_at` is set to `null`.
 - `conn_count` (RO `integer`): the current number of clients connected to this server.
 - `bodies` (RO `array<object<Body>>`): all currently existing bodies in space.
 - `max_conn_count` (RW `integer`): the maximum number of allowed client connections. After this is reached, new connection attempts will be rejected.
 
 Signals:
-- `ship_created` (`object<Ship>`): notification that a new ship has been created (by this client or some other client).
 - `error` (`string`): a recoverable error occurred, generally due to the client making an invalid request.
+- `paused` (`scalar`): the game has been paused, perhaps because `time_per_time` was set to `0` or `pause_at` was reached. The value is the in-game time that has been paused on. If the cause of the pause was `pause_at` then the pause time will be >= what `pause_at` was.
+- `ship_created` (`object<Ship>`): notification that a new ship has been created (by this client or some other client).
 
 Actions:
-- `create_ship` (`[position: vector3, velocity: vector3]`): create a new ship at the given position and with the given velocity
+- `create_ship` (`[position: vector3, velocity: vector3]`): create a new ship at the given position and with the given velocity.
+- `create_celestial` (`[name: string, position: vector3, velocity: vector3, radius: scalar, mass: scalar`): create a celestial body, like a sun, planet or moon.
 
 ### Body
 The entry-point object.
