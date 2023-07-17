@@ -34,6 +34,7 @@ Properties:
 - `network_tick_interval` (RW `scaler`): target real-world time in seconds between messages to clients. Effective duration will be rounded up to the nearest physics tick. If the difference between this and `min_roundtrip_time` isn't enough time to do all required work then the game will slow down.
 - `min_roundtrip_time` (RW `scalar`): minimum real-world time in seconds to idle during each network tick. Clients can respond to messages in a single tick if their ping is faster than this.
 - `pause_at` (RW `scalar | null`): the in-game time at which to pause the game. When this time is reached the `paused` signal is fired, `time_per_time` is set to `0` and `pause_at` is set to `null`.
+- `quit_at` (RW `scalar | null`): the in-game time at which to quit the game.
 - `conn_count` (RO `integer`): the current number of clients connected to this server.
 - `bodies` (RO `array<object<Body>>`): all currently existing bodies in space.
 - `max_conn_count` (RW `integer`): the maximum number of allowed client connections. After this is reached, new connection attempts will be rejected.
