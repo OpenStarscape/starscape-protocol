@@ -2,53 +2,42 @@
 The format is the way the [core protocol](core.md) is represented on the wire. Currently a single JSON-based format is used. The code needs to be ported to the more compact JSON format described here.
 
 ## Opcodes
-These are used when formats need to efficiently represent message types. Messages not associated with an object member start at 0, property opcodes are the 10s, signal opcodes are the 20s and action opcodes are the 30s. Events count up from 0 and requests count down from 9.
+These are used when formats need to efficiently represent message types. Event (server to client) opcodes are 0-7 and request (client to server) opcodes are 8-15, meaning you can keep them in three bits if you really want to.
 
-Non-member messages:
-- `0`: object destroyed
-- `1`: fatal error
-
-Property messages:
-- `10`: value
-- `11`: update
-- `16`: get
-- `17`: set
-- `18`: subscribe
-- `19`: unsubscribe
-
-Signal messages:
-- `20`: event
-- `28`: subscribe
-- `29`: unsubscribe
-
-Action Messages:
-- `39`: fire
+- `0`: fatal error
+- `1`: object destroyed
+- `2`: property value
+- `3`: property value updated
+- `4`: signal fired
+- `8`: get property
+- `9`: set property
+- `10`: subscribe to property
+- `11`: unsubscribe from property
+- `12`: listen to signal
+- `13`: unlisten from signal
+- `14`: fire action
 
 ## JSON Format
-__NOTE:__ the JSON format the server and web client currently implement is a different, less compact variant. They need to be migrated to the format described here. See currently used format [below](#json-format-legacy).
-
-Each message is a UTF-8 encoded JSON array. Messages are separated by newline (character `10`), and do not contain newlines within. __NOTE:__ messages may contain strings with arbitrary UTF-8 text. Newlines are escaped in strings, but the byte value `10` may appear as part of another character. Therefore, any code that splits messages based on the newline delimiter must be unicode-aware.
-
-The first element of each message is the opcode. The following elements depend on it.
-
-For object destroyed:
-```
-[0, object_id]
-```
+Each message is a UTF-8 encoded JSON array. Messages are separated by newline (character `0x0A`), and do not contain newlines within (even in non-ascii characters `0x0A` will not appear in UTF-8). The first element of each message is the opcode. The following elements depend on it.
 
 For fatal error:
 ```
-[1, "reason for error"]
+[0,"reason for error"]
+```
+
+For object destroyed:
+```
+[1,object_id]
 ```
 
 For member messages that contain a value:
 ```
-[opcode, object_id, "member_name", value]
+[opcode,object_id,"member_name",value]
 ```
 
 And for member messages that do not:
 ```
-[opcode, object_id, "member_name"]
+[opcode,object_id,"member_name"]
 ```
 
 ### Values
@@ -59,9 +48,9 @@ Many of the primitive types can be represented cleanly in JSON, but some need a 
 - `scalar`: JSON number
 - `string`: JSON string
 - `object`: array-wrapped number (`[42]`)
-- `vector3`: array of three numbers (`[1, -2, 3.5]`)
-- `array`: array-wrapped array of values (`[[1.5, [42], "foo"]]`)
-- `map`: JSON object containing strings mapped to values
+- `vector3`: array of three numbers (`[1,-2,3.5]`)
+- `array`: array-wrapped array of values (`[[1.5,[42],"foo"]]`)
+- `map`: JSON object containing strings mapped to values (`{"object":[42]}`)
 
 ## JSON Format (legacy)
 This is the format currently used by the client and the server
