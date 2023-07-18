@@ -3,7 +3,7 @@ This document defines the API clients use to communicate with an OpenStarscape s
 
 ## Conventions
 ### Color Representation
-Colors are 24-bit RGB values encoded as strings using hex notation. For example greed is represented as `"0x00FF00"`.
+Colors are represented as an RGB hex string starting with #. For example blue is represented as `"#0000FF"`.
 
 ## Physics
 ### Units
