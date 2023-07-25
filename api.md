@@ -45,7 +45,7 @@ Signals:
 - `ship_created` (`object<Ship>`): notification that a new ship has been created (by this client or some other client).
 
 Actions:
-- `create_ship` (`[position: vector3, velocity: vector3]`): create a new ship at the given position and with the given velocity.
+- `create_ship` (`{name?: string, position?: vector3, velocity?: vector3, radius?: scalar, mass?: scalar`): create a ship body.
 - `create_celestial` (`{name?: string, color?: string, position?: vector3, velocity?: vector3, radius?: scalar, mass?: scalar`): create a celestial body, like a sun, planet or moon.
 
 ### Body
