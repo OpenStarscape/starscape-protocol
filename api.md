@@ -47,6 +47,7 @@ Signals:
 Actions:
 - `create_ship` (`{name?: string, position?: vector3, velocity?: vector3, radius?: scalar, mass?: scalar`): create a ship body.
 - `create_celestial` (`{name?: string, color?: string, position?: vector3, velocity?: vector3, radius?: scalar, mass?: scalar`): create a celestial body, like a sun, planet or moon.
+- `pause_on_proximity` (`{a: Object<Body>, b: Object<Body>, distance: number, velocity: number}`): used for tests. game is paused when the two bodies are are both closer than or equal to `distance` to each other and their velocities are closer than or equal to `velocity`. Note that unlike collision detection, a physics tick must end with the described state in order to trigger the pause.
 
 ### Body
 The entry-point object.
