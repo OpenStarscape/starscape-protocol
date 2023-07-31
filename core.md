@@ -16,6 +16,8 @@ The primitive data types used in the API are:
 - `array`: a sequence of 0 or more values of any type. Can contain values of different types.
 - `map`: a mapping of strings to values, like a dict in Python or object in JavaScript
 
+NOTE: ideally scalars and vector components could be infinity, -infinity or possibly even NaN, but since JSON doesn't support these values they are currently unsupported.
+
 Formats must unambiguously represent values of any type (an int and an object __must__ be distinguishable without context) with the exception is scalars and integers. whole-number scalars are allowed to be ambiguous with integers.
 
 ## Type Annotations
