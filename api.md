@@ -103,7 +103,8 @@ Properties:
 
 Signals: __none__
 
-Actions: __none__
+Actions:
+- `destroy` (`null`): destroys the body.
 
 ### Celestial
 Unpowered body, such as a star, planet, moon, asteroid, etc.
