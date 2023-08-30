@@ -125,13 +125,17 @@ Derives from: __none__
 Properties:
 - `accel` (RW `vector3`): the amount and direction of thrust (km/s/s). Values higher than `max_accel` are clamped without changing direction.
 - `max_accel` (RW `scalar`): the maximum amount of acceleration per second per second (km/s/s).
-- `ap_scheme` (RW `string`): the type of autopilot to use (can be `"off"` or `"orbit"`).
-- `ap_target` (RW `object<Body> | null`): in orbit autopilot, the body this ship should try to orbit around.
+- `ap_scheme` (RW `string`): the type of autopilot to use (can be `"off"`, `"orbit"`, `"dock"` or `"flyby"`).
+- `ap_target` (RW `object<Body> | null`): in orbit autopilot, the body this ship should try to orbit around, in dock and flyby the body to navigate towards.
 - `ap_distance` (RW `scalar | null`): in orbit autopilot, the distance away from the target to orbit (if null, a reasonable default is chosen).
 
 Signals: __none__
 
 Actions: __none__
+
+# TODO
+- rename ship to vessel
+- rename class to type or something
 
 ---
 
